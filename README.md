@@ -10,6 +10,12 @@ A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeSc
 - Light/dark mode toggle (sun/moon icon, top right)
 - Tasks persist to `~/.config/eisenhower-matrix/tasks.json`
 
+## Screenshots
+
+| Light | Dark |
+| --- | --- |
+| ![Light mode](screenshots/light-mode.png) | ![Dark mode](screenshots/dark-mode.png) |
+
 ## Prerequisites
 
 - Go 1.25+ (the toolchain will auto-upgrade via `go.mod` if needed)
