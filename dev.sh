@@ -9,4 +9,4 @@ export GOHOSTARCH=amd64
 export GOARCH=amd64
 export CGO_ENABLED=1
 
-wails build -tags webkit2_41
+wails dev -tags webkit2_41

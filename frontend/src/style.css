@@ -11,23 +11,24 @@
   --quadrant-1-color: #fde2e1;
   --quadrant-2-color: #dcecfb;
   --quadrant-3-color: #fdf1d2;
-  --quadrant-4-color: #e6e8eb;
+  --quadrant-4-color: #dcf2e0;
 }
 
 :root[data-theme='dark'] {
-  --bg-color: #12161f;
-  --surface-color: #1b2130;
-  --surface-hover-color: #232a3c;
-  --border-color: #2a3142;
-  --text-color: #e7eaf0;
-  --text-muted-color: #9aa3b5;
-  --card-color: #232a3c;
+  /* Catppuccin Mocha */
+  --bg-color: #1e1e2e;
+  --surface-color: #313244;
+  --surface-hover-color: #585b70;
+  --border-color: #45475a;
+  --text-color: #cdd6f4;
+  --text-muted-color: #a6adc8;
+  --card-color: #313244;
   --card-border-color: rgba(255, 255, 255, 0.08);
 
-  --quadrant-1-color: #3a2226;
-  --quadrant-2-color: #1f2f42;
-  --quadrant-3-color: #3a331f;
-  --quadrant-4-color: #262b36;
+  --quadrant-1-color: #11111b;
+  --quadrant-2-color: #181825;
+  --quadrant-3-color: #1e1e2e;
+  --quadrant-4-color: #11111b;
 }
 
 html,
