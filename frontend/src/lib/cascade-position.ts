@@ -1,7 +1,7 @@
 import {clamp} from '~/lib/clamp'
 
 const STEP = 0.06
-const MAX_OFFSET = 0.85
+export const MAX_OFFSET = 0.85
 const BASE_X = 0.12
 const BASE_Y = 0.2
 const WRAP_AFTER = 6

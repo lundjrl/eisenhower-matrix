@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {computed, onMounted, ref} from 'vue'
 
-import {CreateTask, DeleteTask, ListTasks, UpdateTaskTitle} from '~wails/go/main/App'
+import {ClearTasks, CreateTask, DeleteTask, ListTasks, MoveTask, UpdateTaskTitle} from '~wails/go/main/App'
 import type {main} from '~wails/go/models'
 
 import QuadrantPanel from '~/components/quadrant-panel.vue'
@@ -56,6 +56,24 @@ const deleteTask = async (id: string): Promise<void> => {
   await DeleteTask(id)
   tasks.value = tasks.value.filter((task) => task.id !== id)
 }
+
+const moveTask = async (id: string, x: number, y: number): Promise<void> => {
+  const task = tasks.value.find((task) => task.id === id)
+
+  if (!task) return
+
+  await MoveTask(id, task.quadrant, x, y)
+
+  task.x = x
+  task.y = y
+}
+
+const clearAllTasks = async (): Promise<void> => {
+  await ClearTasks()
+  tasks.value = []
+}
+
+defineExpose({clearAllTasks})
 </script>
 
 <template>
@@ -69,6 +87,7 @@ const deleteTask = async (id: string): Promise<void> => {
       @create-task="createTask"
       @commit-title="commitTitle"
       @request-delete="deleteTask"
+      @move-task="moveTask"
     />
   </div>
 </template>

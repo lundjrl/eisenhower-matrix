@@ -53,3 +53,8 @@ func (a *App) MoveTask(id string, quadrant Quadrant, x float64, y float64) (Task
 func (a *App) DeleteTask(id string) error {
 	return a.tasks.delete(id)
 }
+
+// ClearTasks removes every task from the matrix.
+func (a *App) ClearTasks() error {
+	return a.tasks.clear()
+}

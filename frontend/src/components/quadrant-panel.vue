@@ -17,6 +17,7 @@ const emit = defineEmits<{
   'create-task': [quadrantId: QuadrantId, x: number, y: number]
   'commit-title': [id: string, title: string]
   'request-delete': [id: string]
+  'move-task': [id: string, x: number, y: number]
 }>()
 
 const addTask = (): void => {
@@ -59,6 +60,7 @@ const addTask = (): void => {
       :start-in-edit-mode="task.id === editingTaskId"
       @commit-title="(id, title) => emit('commit-title', id, title)"
       @request-delete="(id) => emit('request-delete', id)"
+      @move="(id, x, y) => emit('move-task', id, x, y)"
     />
   </section>
 </template>

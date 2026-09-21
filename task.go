@@ -167,6 +167,15 @@ func (s *taskStore) move(id string, quadrant Quadrant, x, y float64) (Task, erro
 	return task, s.persist()
 }
 
+func (s *taskStore) clear() error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	s.tasks = map[string]Task{}
+
+	return s.persist()
+}
+
 func (s *taskStore) delete(id string) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
