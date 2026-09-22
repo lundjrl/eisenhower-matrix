@@ -20,23 +20,32 @@ A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeSc
 
 - Go 1.25+ (the toolchain will auto-upgrade via `go.mod` if needed)
 - Node (use the version in `frontend/.nvmrc`: `nvm use`)
-- The Wails CLI: `go install github.com/wailsapp/wails/v2/cmd/wails@latest`
-- Linux only: WebKit dev headers, required to build/run the GUI:
-
-  ```
-  sudo apt install libwebkit2gtk-4.1-dev
-  ```
-
-  Run `wails doctor` to confirm all dependencies are installed.
+- nvm, so `install.sh` can pick up the pinned Node version
 
 ## Install
 
+On unix-like systems (Linux, macOS), run the install script from the project root:
+
 ```
-cd frontend
-nvm use
-npm install
-cd ..
+./install.sh
 ```
+
+This installs the Wails CLI, the frontend npm packages, the Go module
+dependencies, and (on Linux) the WebKit dev headers required to build/run the
+GUI. It finishes by running `wails doctor` so you can confirm everything is
+set up correctly.
+
+**PATH note:** the Wails CLI is installed to `$(go env GOPATH)/bin` (typically
+`~/go/bin`). If running `wails` afterward gives you `command not found`, that
+directory isn't on your `PATH`. Add it to your shell profile (e.g. `~/.bashrc`
+or `~/.zshrc`):
+
+```
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
+Then restart your terminal or run `source ~/.bashrc` (or the equivalent for
+your shell).
 
 ## Live Development
 
