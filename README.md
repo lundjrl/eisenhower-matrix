@@ -1,5 +1,24 @@
 # Eisenhower Matrix
 
+## AI Usage
+
+This project was built with a lot of help from AI, and I want to be upfront
+about that.
+
+- **Code:** Most of the application code (Go backend and Vue frontend) was
+  written by Claude Code. I decided what to build, directed the work through
+  prompts, reviewed the results, ran the app, and asked for changes when
+  something wasn't right.
+- **Planning:** Early planning and design decisions were worked through with
+  AI using the [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD).
+  The BMAD skills are checked into `.claude/`, `.agents/`, and `_bmad/`.
+- **Install script and docs:** `install.sh` and this README were drafted with
+  AI and edited by me.
+- **Not AI:** The app logo and icons were made without AI.
+
+AI-written code can contain mistakes that look reasonable at a glance. If you
+find a bug or something that doesn't make sense, please open an issue.
+
 A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeScript (frontend).
 
 - Q1 (top-left): Important & Urgent
