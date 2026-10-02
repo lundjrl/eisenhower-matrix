@@ -88,3 +88,69 @@ jobs:
           path: build/bin/*
           retention-days: 14
           if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: eisenhower-matrix-*
+          path: artifacts
+
+      - name: Compute next version tag
+        id: version
+        run: |
+          latest_tag=$(git tag -l 'v*' --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+
+          if [ -z "$latest_tag" ]; then
+            next_tag="v1.0.0"
+          else
+            version="${latest_tag#v}"
+            IFS='.' read -r major minor patch <<< "$version"
+            next_tag="v${major}.${minor}.$((10#$patch + 1))"
+          fi
+
+          echo "tag=$next_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare release assets
+        run: |
+          tag="${{ steps.version.outputs.tag }}"
+
+          for dir in eisenhower-matrix-linux eisenhower-matrix-windows eisenhower-matrix-macos-arm64; do
+            if [ ! -d "artifacts/$dir" ]; then
+              echo "::error::Expected build artifact 'artifacts/$dir' is missing" >&2
+              exit 1
+            fi
+          done
+
+          mkdir -p release-assets
+          cp "artifacts/eisenhower-matrix-linux/eisenhower-matrix" "release-assets/eisenhower-matrix-linux-${tag}"
+          cp "artifacts/eisenhower-matrix-windows/eisenhower-matrix.exe" "release-assets/eisenhower-matrix-windows-${tag}.exe"
+
+          (cd artifacts/eisenhower-matrix-macos-arm64 && zip -r "../../release-assets/eisenhower-matrix-macos-arm64-${tag}.zip" eisenhower-matrix.app)
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.version.outputs.tag }}"
+
+          gh release create "$tag" release-assets/* \
+            --title "$tag" \
+            --target "${{ github.sha }}" \
+            --generate-notes

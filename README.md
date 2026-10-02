@@ -35,6 +35,10 @@ A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeSc
 | --- | --- |
 | ![Light mode](screenshots/light-mode.png) | ![Dark mode](screenshots/dark-mode.png) |
 
+## Download
+
+Prebuilt binaries for Windows, macOS (Apple Silicon), and Linux are published on the [Releases page](https://github.com/lundjrl/eisenhower-matrix/releases) for every change that lands on `main` — no build step required.
+
 ## Prerequisites
 
 - Go 1.25+ (the toolchain will auto-upgrade via `go.mod` if needed)
