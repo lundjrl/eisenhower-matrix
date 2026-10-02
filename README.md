@@ -1,9 +1,9 @@
-# Eisenhower Matrix
+# Eisenhower Matrix 📝
 
 ## AI Usage
 
 This project was built with a lot of help from AI, and I want to be upfront
-about that.
+about that. That's why it's the first section of this README.
 
 - **Code:** Most of the application code (Go backend and Vue frontend) was
   written by Claude Code. I decided what to build, directed the work through
@@ -17,7 +17,7 @@ about that.
 - **Not AI:** The app logo and icons were made without AI.
 
 AI-written code can contain mistakes that look reasonable at a glance. If you
-find a bug or something that doesn't make sense, please open an issue.
+find a bug or something that doesn't make sense, please open an issue. Human appreciate it! ☺️
 
 A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeScript (frontend).
 
