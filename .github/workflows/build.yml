@@ -115,7 +115,7 @@ jobs:
       - name: Compute next version tag
         id: version
         run: |
-          latest_tag=$(git tag -l 'v*' --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+          latest_tag=$(git tag -l 'v*' --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1 || true)
 
           if [ -z "$latest_tag" ]; then
             next_tag="v1.0.0"
