@@ -32,6 +32,16 @@ type Task struct {
 	CreatedAt int64    `json:"createdAt"`
 }
 
+// NewTask describes a task to be created in bulk, eg. from a markdown
+// import. Unlike Task, it carries no ID or CreatedAt -- those are assigned
+// by the store.
+type NewTask struct {
+	Title    string   `json:"title"`
+	Quadrant Quadrant `json:"quadrant"`
+	X        float64  `json:"x"`
+	Y        float64  `json:"y"`
+}
+
 type taskStore struct {
 	mu    sync.Mutex
 	path  string
@@ -185,6 +195,50 @@ func (s *taskStore) delete(id string) error {
 	}
 
 	delete(s.tasks, id)
+
+	return s.persist()
+}
+
+// bulkCreate adds every given task in one go, persisting once at the end.
+// Used by markdown import, which can add up to 200 tasks at a time.
+func (s *taskStore) bulkCreate(inputs []NewTask) ([]Task, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	now := time.Now().Unix()
+	created := make([]Task, 0, len(inputs))
+
+	for _, input := range inputs {
+		task := Task{
+			ID:        uuid.NewString(),
+			Title:     input.Title,
+			Quadrant:  input.Quadrant,
+			X:         input.X,
+			Y:         input.Y,
+			CreatedAt: now,
+		}
+
+		s.tasks[task.ID] = task
+		created = append(created, task)
+	}
+
+	if err := s.persist(); err != nil {
+		return nil, err
+	}
+
+	return created, nil
+}
+
+// bulkDelete removes every task with a matching ID, persisting once at the
+// end. Unknown IDs are ignored so undo stays safe even if a task was already
+// removed some other way. Used to undo a markdown import.
+func (s *taskStore) bulkDelete(ids []string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	for _, id := range ids {
+		delete(s.tasks, id)
+	}
 
 	return s.persist()
 }
