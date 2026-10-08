@@ -1,4 +1,6 @@
-# Eisenhower Matrix 📝
+# Ike 📝
+
+An Eisenhower Matrix to help organize your life
 
 [![Latest Release](https://img.shields.io/github/v/release/lundjrl/eisenhower-matrix?label=release)](https://github.com/lundjrl/eisenhower-matrix/releases/latest)
 [![Build](https://github.com/lundjrl/eisenhower-matrix/actions/workflows/build.yml/badge.svg)](https://github.com/lundjrl/eisenhower-matrix/actions/workflows/build.yml)
@@ -23,13 +25,20 @@ about that. That's why it's the first section of this README.
 AI-written code can contain mistakes that look reasonable at a glance. If you
 find a bug or something that doesn't make sense, please open an issue. Human appreciate it! ☺️
 
-A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeScript (frontend).
+Ike is a desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeScript (frontend).
 
 - Q1 (top-left): Important & Urgent
 - Q2 (top-right): Important & Not Urgent
 - Q3 (bottom-left): Urgent & Not Important
 - Q4 (bottom-right): Neither
+
+## Functionality
+
 - Double-click a quadrant to create a task there, like Obsidian Canvas
+- Freely drag and drop tasks within a quadrant to arrange them
+- Inline editing of task titles
+- Delete a task with a confirmation prompt
+- Paste markdown to bulk-import tasks into their quadrants
 - Light/dark mode toggle (sun/moon icon, top right)
 - Tasks persist to `~/.config/eisenhower-matrix/tasks.json`
 
@@ -39,7 +48,7 @@ A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeSc
 | --- | --- |
 | ![Light mode](screenshots/light-mode.png) | ![Dark mode](screenshots/dark-mode.png) |
 
-Paste markdown to bulk-import tasks into their quadrants:
+Bulk-import via paste:
 
 ![Import text](screenshots/import-text.png)
 
