@@ -39,6 +39,10 @@ A desktop Eisenhower Matrix app built with Wails (Go backend) and Vue 3 + TypeSc
 | --- | --- |
 | ![Light mode](screenshots/light-mode.png) | ![Dark mode](screenshots/dark-mode.png) |
 
+Paste markdown to bulk-import tasks into their quadrants:
+
+![Import text](screenshots/import-text.png)
+
 ## Download
 
 Prebuilt binaries for Windows, macOS (Apple Silicon), and Linux are published on the [Releases page](https://github.com/lundjrl/eisenhower-matrix/releases) for every change that lands on `main` — no build step required.
