@@ -1,5 +1,9 @@
 # Eisenhower Matrix 📝
 
+[![Latest Release](https://img.shields.io/github/v/release/lundjrl/eisenhower-matrix?label=release)](https://github.com/lundjrl/eisenhower-matrix/releases/latest)
+[![Build](https://github.com/lundjrl/eisenhower-matrix/actions/workflows/build.yml/badge.svg)](https://github.com/lundjrl/eisenhower-matrix/actions/workflows/build.yml)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/lundjrl/eisenhower-matrix)](go.mod)
+
 ## AI Usage
 
 This project was built with a lot of help from AI, and I want to be upfront
